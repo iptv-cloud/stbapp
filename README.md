@@ -1,2 +1,2 @@
-# RallyEasy TV
-RallyEasy TV android app 
+# MyCloud IPTV
+MyCloud IPTV android app 
