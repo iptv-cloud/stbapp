@@ -1,0 +1,6 @@
+IPTV
+
+./adb kill-server
+./adb connect 192.168.2.37
+./adb -s "192.168.2.37:5555" push install_rtve.sh /sdcard/
+./adb -s 192.168.2.37:5555 shell

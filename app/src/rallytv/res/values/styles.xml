@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="base_custom_theme" parent="@style/Theme.Leanback" >
+
+        <item name="defaultSearchColor">@color/defaultSearchColor</item>
+        <item name="defaultSearchIconColor">@color/defaultSearchIconColor</item>
+        <item name="android:textColor">@color/default_text_color</item>
+
+        <item name="rowHeaderStyle">@style/RowHeaderStyle</item>
+
+        <!--<item name="imageCardViewContentStyle">@style/GameCardContentStyle</item>-->
+        <item name="imageCardViewTitleStyle">@style/ItemCardTitleStyle</item>
+        <item name="colorAccent">@color/warm_grey</item>
+
+    </style>
+
+    <style name="RowHeaderStyle" parent="Widget.Leanback.Row.Header">
+        <item name="android:textColor">@color/menu_text_color</item>
+    </style>
+
+    <!--<style name="GameCardContentStyle" parent="Widget.Leanback.ImageCardView.ContentStyle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">8sp</item>
+    </style>-->
+
+    <style name="ItemCardTitleStyle" parent="Widget.Leanback.ImageCardView.TitleStyle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingLeft">2dp</item>
+    </style>
+
+</resources>

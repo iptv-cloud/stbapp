@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="warm_grey">#999999</color>
+    <color name="color_olive_light">#FFC107</color>
+    <color name="white">#ffffff</color>
+
+    <color name="dark_gray">#444343</color>
+
+    <color name="menu_text_color">#DF1313</color>
+
+    <color name="default_text_color">#000000</color>
+
+    <color name="defaultSearchColor">#FFFFFF</color>
+    <color name="defaultSearchIconColor">#FFC107</color>
+
+    <color name="black">#000000</color>
+
+</resources>

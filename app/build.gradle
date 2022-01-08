@@ -1,0 +1,147 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.jakewharton.butterknife'
+
+ext.versionMajor = 1
+ext.versionMinor = 2
+ext.versionPatch = 3
+ext.versionClassifier = null
+ext.isSnapshot = false
+ext.minimumSdkVersion = 22
+
+private Integer generateVersionCode() {
+    return ext.minimumSdkVersion * 10000000 + ext.versionMajor * 10000 + ext.versionMinor * 100 + ext.versionPatch
+}
+
+private String generateVersionName() {
+    String versionName = "${ext.versionMajor}.${ext.versionMinor}.${ext.versionPatch}"
+    if (ext.versionClassifier == null) {
+        if (ext.isSnapshot) {
+            ext.versionClassifier = "SNAPSHOT"
+        }
+    }
+
+    if (ext.versionClassifier != null) {
+        versionName += "-" + ext.versionClassifier
+    }
+    return versionName
+}
+
+android {
+    compileSdkVersion 30
+    defaultConfig {
+        minSdkVersion 22
+        targetSdkVersion 30
+        versionCode generateVersionCode()
+        versionName generateVersionName()
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+        signingConfigs {
+        production {
+            keyAlias "hidayahiptv"
+            keyPassword "hidayahiptv"
+            storeFile file("/Users/rkzipu/AndroidStudioProjects/appkey/hidayahtv.jks")
+            storePassword "hssiptv2019"
+        }
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField("String", "BASE_URL", "\"https://rtv-auth1.frontline.ca/\"")
+//            buildConfigField("String", "BASE_URL", "\"https://myhealthhub.rally.ca/\"")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            buildConfigField("String", "BASE_URL", "\"https://rtv-auth1.frontline.ca/\"")
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.production
+        }
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "Hidayah-TV-${defaultConfig.versionName}-${variant.buildType.name}.apk"
+        }
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+    //flavor
+    flavorDimensions "isp_iptv"
+    productFlavors {
+        rallytv {
+            dimension "isp_iptv"
+            applicationId "com.hidayah.rallytv"
+            buildConfigField("String", "terminal", "\"test\"")
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "${variant.getFlavorName()}-${variant.versionName}-${variant.buildType.name}.apk"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':library')
+
+    implementation 'com.google.android.exoplayer:exoplayer:2.10.4'
+    implementation 'androidx.leanback:leanback:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+   // implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
+
+    //view injection (ButterKnife)
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.github.bumptech.glide:glide:4.3.1'
+
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    //rx-Android
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.0'
+    //rx-retrofit-adpter
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testImplementation 'junit:junit:4.12'
+    implementation 'org.mockito:mockito-core:2.18.3'
+    implementation 'com.google.ads.interactivemedia.v3:interactivemedia:3.7.4'
+    implementation 'jp.wasabeef:recyclerview-animators:2.2.4'
+    implementation 'com.google.firebase:firebase-analytics:17.0.1'
+
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.6'
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.4'
+
+}

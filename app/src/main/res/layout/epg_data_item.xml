@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:focusable="true"
+    android:background="@drawable/channel_tem_bg"
+    android:padding="1dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<RelativeLayout
+    android:background="@color/dark_gray"
+    android:layout_centerHorizontal="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:lines="1"
+        android:ellipsize="end"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:id="@+id/tvEpgTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        tools:text="Title" />
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tvEpgTitle"
+        android:lines="1"
+        android:ellipsize="end"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:id="@+id/tvEpgSchedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        tools:text="Title" />
+</RelativeLayout>
+
+
+</RelativeLayout>
